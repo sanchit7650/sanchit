@@ -41,5 +41,33 @@
   </div>
 
   <script src="theme.js"></script>
+    <!-- Theme toggle fallback script -->
+  <script>
+    // Backup inline theme functionality in case theme.js doesn't load
+    const toggleBtn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    
+    function initTheme() {
+      const storedTheme = localStorage.getItem('theme') || 'light';
+      root.setAttribute('data-theme', storedTheme);
+      if (toggleBtn) {
+        toggleBtn.textContent = storedTheme === 'light' ? '🌙 Dark' : '☀️ Light';
+      }
+    }
+    
+    if (toggleBtn && !window.themeLoaded) {
+      toggleBtn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') || 'light';
+        const next = current === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        toggleBtn.textContent = next === 'light' ? '🌙 Dark' : '☀️ Light';
+      });
+    }
+    
+    initTheme();
+    window.themeLoaded = true;
+  </script>
 </body>
 </html>
+
