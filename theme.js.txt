@@ -1,16 +1,37 @@
-// theme.js
+// theme.js (with system preference detection)
 
 const toggleBtn = document.getElementById("theme-toggle");
 const root = document.documentElement;
 
-const storedTheme = localStorage.getItem("theme");
-if (storedTheme === "dark" || storedTheme === "light") {
-  root.setAttribute("data-theme", storedTheme);
+function initTheme() {
+  // Check localStorage first, then system preference, then default to "light"
+  let theme = localStorage.getItem("theme");
+  
+  if (!theme) {
+    // Detect system preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    theme = prefersDark ? "dark" : "light";
+  }
+  
+  root.setAttribute("data-theme", theme);
+  updateButtonText(theme);
 }
 
-toggleBtn.addEventListener("click", () => {
-  const current = root.getAttribute("data-theme") || "light";
-  const next = current === "light" ? "dark" : "light";
-  root.setAttribute("data-theme", next);
-  localStorage.setItem("theme", next);
-});
+function updateButtonText(theme) {
+  if (toggleBtn) {
+    toggleBtn.textContent = theme === "light" ? "🌙 Dark" : "☀️ Light";
+  }
+}
+
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || "light";
+    const next = current === "light" ? "dark" : "light";
+    
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    updateButtonText(next);
+  });
+}
+
+initTheme();
