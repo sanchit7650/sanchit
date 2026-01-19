@@ -1,16 +1,12 @@
 // theme.js
-
 const toggleBtn = document.getElementById("theme-toggle");
 const root = document.documentElement;
-
 // Initialize theme on page load
 function initTheme() {
   const storedTheme = localStorage.getItem("theme") || "light";
   root.setAttribute("data-theme", storedTheme);
   updateButtonText(storedTheme);
-  console.log("Theme initialized:", storedTheme);
 }
-
 // Update button text based on current theme
 function updateButtonText(theme) {
   if (toggleBtn) {
@@ -27,7 +23,6 @@ if (toggleBtn) {
     root.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
     updateButtonText(next);
-    console.log("Theme switched to:", next);
   });
 }
 
