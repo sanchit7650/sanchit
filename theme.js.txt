@@ -1,0 +1,16 @@
+// theme.js
+
+const toggleBtn = document.getElementById("theme-toggle");
+const root = document.documentElement;
+
+const storedTheme = localStorage.getItem("theme");
+if (storedTheme === "dark" || storedTheme === "light") {
+  root.setAttribute("data-theme", storedTheme);
+}
+
+toggleBtn.addEventListener("click", () => {
+  const current = root.getAttribute("data-theme") || "light";
+  const next = current === "light" ? "dark" : "light";
+  root.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+});

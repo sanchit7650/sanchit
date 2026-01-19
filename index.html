@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2 class="logo">MyAdmin</h2>
+      <nav>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Users</a>
+        <a href="#">Orders</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+      </nav>
+    </aside>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Overview</h1>
+      </div>
+      <div class="topbar-right">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          🌞 / 🌙
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="grid">
+        <article class="card">Total Users: 1,245</article>
+        <article class="card">Active Sessions: 87</article>
+        <article class="card">Revenue Today: ₹24,500</article>
+        <article class="card">New Orders: 32</article>
+        <article class="card large">Chart / Analytics Area</article>
+      </section>
+    </main>
+  </div>
+
+  <script src="theme.js"></script>
+</body>
+</html>
